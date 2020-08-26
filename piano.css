@@ -1,0 +1,31 @@
+#wrapper
+{
+	margin:0 auto;
+	background-color: blue;
+	width:1040px;
+	height:500px;
+}
+.white 
+{   line-height: 10px;
+	width: 100px;
+	height:500px;
+} 
+.black
+{   position: absolute;
+	background-color: black;
+    width: 70px;
+	height:300px; 
+	margin-left: -40px;
+} 
+.txt
+{ top : 440px; 
+  position: absolute; 
+  font-size: 50px;
+}
+.up
+{
+	position: absolute;
+	top:240px;
+	color:white; 
+	font-size: 35px;
+}

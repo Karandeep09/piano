@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Piano</title> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	<link rel="stylesheet" type="text/css" href="piano.css">
+</head>
+<body>
+	<div id = "wrapper">
+	<button class = "white" onclick="foo(1)"><div class="txt">C</div></button>
+	<button class = "black" onclick="foo(2)"><div class="up">C#</div></button>
+	<button class = "white" onclick="foo(3)"><div class="txt">D</div></button>
+	<button class = "black" onclick="foo(4)"><div class="up">D#</div></button>
+	<button class = "white" onclick="foo(5)"><div class="txt">E</div></button>
+	<button class = "white" onclick="foo(6)"><div class="txt">F</div></button>
+	<button class = "black" onclick="foo(7)"><div class="up">F#</div></button>
+	<button class = "white" onclick="foo(8)"><div class="txt">G</div></button>
+	<button class = "black" onclick="foo(9)"><div class="up">G#</div></button>
+	<button class = "white" onclick="foo(10)"><div class="txt">A</div></button>
+	<button class = "black" onclick="foo(11)"><div class="up">A#</div></button>
+	<button class = "white" onclick="foo(12)"><div class="txt">B</div></button>
+	<button class = "white" onclick="foo(13)"><div class="txt">C</div></button>
+	<button class = "black" onclick="foo(14)"><div class="up">C#</div></button>
+	<button class = "white" onclick="foo(15)"><div class="txt">D</div></button>
+	<button class = "black" onclick="foo(16)"><div class="up">D#</div></button>
+	<button class = "white" onclick="foo(17)"><div class="txt">E</div></button>
+    </div>
+<script type="text/javascript">
+// create web audio api context
+var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+
+function playNote(frequency, duration) {
+  // create Oscillator node
+  var oscillator = audioCtx.createOscillator();
+
+  oscillator.type = 'square';
+  oscillator.frequency.value = frequency; // value in hertz
+  oscillator.connect(audioCtx.destination);
+  oscillator.start();
+
+  setTimeout(
+    function() {
+      oscillator.stop();
+    }, duration);
+}
+ function foo(no)
+ {  var freq = 440*Math.pow(2,no/12);
+ 	playNote(freq,300);
+ }
+ 
+
+</script>
+</body>
+</html>

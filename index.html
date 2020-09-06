@@ -4,6 +4,7 @@
 	<title>Piano</title> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<link rel="stylesheet" type="text/css" href="piano.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div id = "wrapper">
@@ -24,11 +25,14 @@
 	<button class = "white" onclick="foo(15)"><div class="txt">D</div></button>
 	<button class = "black" onclick="foo(16)"><div class="up">D#</div></button>
 	<button class = "white" onclick="foo(17)"><div class="txt">E</div></button>
+	<button class = "record" onclick="rec()"><i class="fa fa-circle"></i></button>
+	<button class = "play" onclick="play()"><i class="fa fa-play"></i></button>
     </div>
 <script type="text/javascript">
 // create web audio api context
 var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-
+var arr=[];
+var record = 0;
 function playNote(frequency, duration) {
   // create Oscillator node
   var oscillator = audioCtx.createOscillator();
@@ -45,10 +49,34 @@ function playNote(frequency, duration) {
 }
  function foo(no)
  {  var freq = 440*Math.pow(2,no/12);
+ 	if(record==1)
+ 		{arr.push({f:no,t:new Date});
+ 		}
  	playNote(freq,300);
  }
- 
+ function rec()
+ { var x = document.getElementsByClassName("fa fa-circle");
+ 	record = 1-record;
+    if(record==1)
+  { arr.splice(0,arr.length);
+    x[0].style.color="red";
+  	console.log("Rec...");
+  }
+  else
+  	x[0].style.color="black";
+ }
 
+ function play()
+ { 	
+   for(var i = 0; i < arr.length; i++) {
+    delay(i);
+}
+ }
+ function delay(i) {
+  setTimeout(() => {
+    foo(arr[i].f);
+  }, arr[i].t-arr[0].t);
+} 
 </script>
 </body>
 </html>
